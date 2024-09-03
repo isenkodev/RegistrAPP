@@ -19,23 +19,23 @@ export class LoginPage {
   ) {}
   
   validateLogin() {
-    if (this.username === 'Admin' && this.password === 'Admin') {  // ACA ESTA EL USUARIO CON LA CONTRASEÑA
+    if (this.username === 'Admin' && this.password === 'Admin') {  // ACA ESTA EL USUARIO CON LA CONTRASEÑA.
       let extras: NavigationExtras = {
         state: {
           user: this.username
         }
       };
-      this.toastMessage('Usuario y contraseña válidos', 'success');
+      this.toastMessage('Usuario y contraseña válidos', 'success');  // El mensaje de aprovacion al usuario
       this.router.navigate(['/home'], extras);
     } else {
-      this.toastMessage('Usuario o contraseña incorrectos, inténtelo de nuevo.', 'danger');
+      this.toastMessage('Usuario o contraseña incorrectos, inténtelo de nuevo.', 'danger');   // El mensaje de incorrecto al usuario
     }
   }
 
   async toastMessage(message: string, color: string) {
     const toast = await this.toastController.create({
       message: message,
-      duration: 3000,
+      duration: 3000,    // este es la duracion del mensaje
       position: 'bottom',
       color: color
     });
