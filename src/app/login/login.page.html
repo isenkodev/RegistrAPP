@@ -1,13 +1,25 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
+<ion-header [translucent]="false" style="color: whitesmoke; background-color: rgb(49, 49, 170);" class="ion-border">
+  <h1 style="font-size: 20px; font-family: 'Segoe UI'; text-align: center;">RegistrAPP</h1>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">login</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  <ion-list style="margin-top: 20%;">
+    <h5 style="font-size: 20px; font-family: 'Segoe UI'; text-align: center;">Iniciar Sesion</h5>
+    <ion-item>  
+      <ion-input label="Usuario:" [(ngModel)]="username"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-input label="Contraseña:" type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-button expand="block" (click)="validateLogin()">Ingresa</ion-button>
+
+  <div class="ion-text-center" style="margin-top: 20px;">
+    <a routerLink="/signup">Crear una cuenta nueva</a>
+  </div>
+  
 </ion-content>
