@@ -25,17 +25,17 @@ export class LoginPage {
           user: this.username
         }
       };
-      this.toastMessage('Usuario y contraseña válidos', 'success');  // El mensaje de aprovacion al usuario
+      this.toastMessage('Usuario y contraseña válidos', 'success');  // El mensaje de aprovacion al usuario.
       this.router.navigate(['/home'], extras);
     } else {
-      this.toastMessage('Usuario o contraseña incorrectos, inténtelo de nuevo.', 'danger');   // El mensaje de incorrecto al usuario
+      this.toastMessage('Usuario o contraseña incorrectos, inténtelo de nuevo.', 'danger');   // El mensaje de incorrecto al usuario.
     }
   }
 
   async toastMessage(message: string, color: string) {
     const toast = await this.toastController.create({
       message: message,
-      duration: 3000,    // este es la duracion del mensaje
+      duration: 3000,    // este es la duracion del mensaje.
       position: 'bottom',
       color: color
     });
