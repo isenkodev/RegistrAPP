@@ -3,19 +3,25 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list>
-    <ion-item>
-      <ion-label>Ingresa un email para recuperar la contraseña</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-input
-        type="email"
-        fill="solid"
-        label="Email"
-        labelPlacement="floating"
-        errorText="Invalid email"
-      ></ion-input>
-    </ion-item>
-    <ion-button [routerLink]="['/login']" >Recuperar</ion-button>
-  </ion-list>
+  <form #emailForm="ngForm" (ngSubmit)="onSubmit(emailForm)">
+    <ion-list>
+      <ion-item>
+        <ion-label>Ingresa un email para recuperar la contraseña</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          fill="solid"
+          required email
+          label="Email"
+          pattern="[a-zA-Z0-9!#$%&'*\/=?^_`\{\|\}~\+\-]([\.]?[a-zA-Z0-9!#$%&'*\/=?^_`\{\|\}~\+\-])+@[a-zA-Z0-9]([^@&%$\/\(\)=?¿!\.,:;]|\d)+[a-zA-Z0-9][\.][a-zA-Z]{2,4}([\.][a-zA-Z]{2})?"
+          labelPlacement="floating"
+          errorText="Email no valido"
+        ></ion-input>
+      </ion-item>
+      <ion-button type="submit" [routerLink]="['/login']" [disabled]="emailForm.invalid">Recuperar</ion-button>
+    </ion-list>
+  </form>
 </ion-content>
