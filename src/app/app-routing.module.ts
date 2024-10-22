@@ -19,6 +19,14 @@ const routes: Routes = [
     path: 'recuperar',
     loadChildren: () => import('./recuperar/recuperar.module').then( m => m.RecuperarPageModule)
   },
+  {
+    path: 'error404',
+    loadChildren: () => import('./error404/error404.module').then( m => m.Error404PageModule)
+  },
+  {
+    path: '**',  
+    redirectTo: 'error404'  
+  },
 ];
 
 @NgModule({

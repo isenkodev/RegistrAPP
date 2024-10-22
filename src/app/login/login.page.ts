@@ -19,7 +19,7 @@ export class LoginPage {
   ) {}
   
   validateLogin() {
-    if (this.username === 'Admin' && this.password === 'Admin') {  // ACA ESTA EL USUARIO CON LA CONTRASEÑA.
+    if (this.username === 'admin' && this.password === 'admin') {  // ACA ESTA EL USUARIO CON LA CONTRASEÑA.
       let extras: NavigationExtras = {
         state: {
           user: this.username
