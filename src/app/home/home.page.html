@@ -5,7 +5,7 @@
 <ion-content style="--background-color: white; color: white;">
   <h3 class="bienvenida">
     Bienvenido: {{ username }}
-    <ion-button style="margin-left: 70%;" [routerLink]="['/login']">Desconectar</ion-button>
+    <ion-button style="margin-left: 70%;" (click)="onLogout()">Desconectar</ion-button>
 
   </h3>
 
