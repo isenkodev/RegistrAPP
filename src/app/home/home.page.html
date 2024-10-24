@@ -5,10 +5,9 @@
 <ion-content style="--background-color: white; color: white;">
   <h3 class="bienvenida">
     Bienvenido: {{ username }}
-    <ion-button style="margin-left: 70%;" [routerLink]="['/login']">Desconectar</ion-button>
-
   </h3>
 
+  <ion-button style="margin-left: 70%;">Generar QR</ion-button>
 
   <div class="calendario">
     <h3 class="calendari">Calendario</h3>
@@ -17,6 +16,9 @@
 
   <div class="asignaturas">
     <h3 class="calendari">Asignaturas</h3>
+    <ion-button expand="block" [routerLink]="['/listaprofesores']"> 
+      Profesores
+    </ion-button>
     <ion-list>
       <ion-item>
         <ion-label>Inglés</ion-label>
@@ -29,8 +31,7 @@
         <ion-progress-bar value="0.6" color="warning"></ion-progress-bar>
         <ion-text style="margin-left: 10px;">76%</ion-text>
       </ion-item>
-
-      
+   
       <ion-item>
         <ion-label>Arquitectura</ion-label>
         <ion-progress-bar value="0.9" color="success"></ion-progress-bar>
@@ -47,5 +48,8 @@
 </ion-content>
 
 <ion-footer style="background: rgb(49, 49, 170);">
-  <ion-button expand="block">Generar QR Asistencias</ion-button>
+  <ion-button expand="block" [routerLink]="['/login']"> 
+    <ion-icon name="home" slot="start"></ion-icon> 
+    Desconectar
+  </ion-button>
 </ion-footer>

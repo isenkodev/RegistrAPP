@@ -20,13 +20,17 @@ const routes: Routes = [
     loadChildren: () => import('./recuperar/recuperar.module').then( m => m.RecuperarPageModule)
   },
   {
+    path: 'listaprofesores',
+    loadChildren: () => import('./listaprofesores/listaprofesores.module').then( m => m.ListaprofesoresPageModule)
+  },
+  {
     path: 'error404',
     loadChildren: () => import('./error404/error404.module').then( m => m.Error404PageModule)
   },
   {
     path: '**',  
     redirectTo: 'error404'  
-  },
+  }
 ];
 
 @NgModule({
