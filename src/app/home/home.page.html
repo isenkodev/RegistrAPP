@@ -5,6 +5,8 @@
 <ion-content style="--background-color: white; color: white;">
   <h3 class="bienvenida">
     Bienvenido: {{ username }}
+    <ion-button style="margin-left: 70%;" (click)="onLogout()">Desconectar</ion-button>
+
   </h3>
 
   <ion-button style="margin-left: 70%;">Generar QR</ion-button>
@@ -60,9 +62,7 @@
   </div>
 </ion-content>
 
-<ion-footer style="background: rgb(49, 49, 170);">
-  <ion-button expand="block" [routerLink]="['/login']"> 
-    <ion-icon name="home" slot="start"></ion-icon> 
-    Desconectar
-  </ion-button>
-</ion-footer>
+<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab-button (click)="scan()">
+    <ion-icon name="scan"></ion-icon>
+  </ion-fab-button>
