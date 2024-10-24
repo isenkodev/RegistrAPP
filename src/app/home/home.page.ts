@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import {LoginServiceService} from '../service/login.service.service'
+import {LoginServiceService} from '../service/login.service.service';
+import { CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHint, CapacitorBarcodeScannerTypeHintALLOption } from '@capacitor/barcode-scanner';
 
 @Component({
   selector: 'app-home',
@@ -29,5 +30,14 @@ export class HomePage {
   onLogout() {
     this.loginService.logout(); // Llama al método de logout
     this.router.navigate(['/login']); // Redirigir al login después de logout
+  }
+
+  result: string = ''
+
+  async scan(): Promise<void> {
+    const result = await CapacitorBarcodeScanner.scanBarcode({
+      hint: CapacitorBarcodeScannerTypeHint.ALL
+    });
+    this.result = result.ScanResult;
   }
 }

@@ -24,6 +24,7 @@ const routes: Routes = [
     canActivate:[noAutenticadoGuard],
     loadChildren: () => import('./recuperar/recuperar.module').then( m => m.RecuperarPageModule)
   },
+
 ];
 
 @NgModule({

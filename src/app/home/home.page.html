@@ -46,6 +46,7 @@
   </div>
 </ion-content>
 
-<ion-footer style="background: rgb(49, 49, 170);">
-  <ion-button expand="block">Generar QR Asistencias</ion-button>
-</ion-footer>
+<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab-button (click)="scan()">
+    <ion-icon name="scan"></ion-icon>
+  </ion-fab-button>
