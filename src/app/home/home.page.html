@@ -9,6 +9,7 @@
 
   </h3>
 
+  <ion-button style="margin-left: 70%;">Generar QR</ion-button>
 
   <div class="calendario">
     <h3 class="calendari">Calendario</h3>
@@ -17,32 +18,47 @@
 
   <div class="asignaturas">
     <h3 class="calendari">Asignaturas</h3>
+    <ion-button expand="block" [routerLink]="['/listaprofesores']"> 
+      Profesores
+    </ion-button>
     <ion-list>
       <ion-item>
-        <ion-label>Inglés</ion-label>
-        <ion-progress-bar value="0.8" color="success"></ion-progress-bar>
-        <ion-text style="margin-left: 10px;">80%</ion-text>
-      </ion-item>
-
+        <ion-label>Arquitectura</ion-label>
+        <ion-progress-bar value="1.0" color="success"></ion-progress-bar>
+        <ion-text style="margin-left: 10px;">100%</ion-text>
+      </ion-item>    
+       
       <ion-item>
         <ion-label>Calidad de Software</ion-label>
-        <ion-progress-bar value="0.6" color="warning"></ion-progress-bar>
-        <ion-text style="margin-left: 10px;">76%</ion-text>
+        <ion-progress-bar value="0.86" color="success"></ion-progress-bar>
+        <ion-text style="margin-left: 10px;">86%</ion-text>
       </ion-item>
 
-      
       <ion-item>
-        <ion-label>Arquitectura</ion-label>
-        <ion-progress-bar value="0.9" color="success"></ion-progress-bar>
-        <ion-text style="margin-left: 10px;">90%</ion-text>
-      </ion-item>
+        <ion-label>Ética para el Trabajo</ion-label>
+        <ion-progress-bar value="0.96" color="success"></ion-progress-bar>
+        <ion-text style="margin-left: 10px;">96%</ion-text>
+      </ion-item>   
 
       <ion-item>
         <ion-label>Programación de Aplicaciones Móviles</ion-label>
-        <ion-progress-bar value="0.5" color="warning"></ion-progress-bar>
-        <ion-text style="margin-left: 10px;">50%</ion-text>
+        <ion-progress-bar value="0.91" color="success"></ion-progress-bar>
+        <ion-text style="margin-left: 10px;">91%</ion-text>
       </ion-item>
-    </ion-list>
+
+      <ion-item>
+        <ion-label>Inglés Intermedio</ion-label>
+        <ion-progress-bar value="0.75" color="warning"></ion-progress-bar>
+        <ion-text style="margin-left: 10px;">75%</ion-text>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Estadistica Descriptiva</ion-label>
+        <ion-progress-bar value="0.84" color="success"></ion-progress-bar>
+        <ion-text style="margin-left: 10px;">84%</ion-text>
+      </ion-item>
+
+    </ion-list>   
   </div>
 </ion-content>
 
