@@ -3,11 +3,15 @@
 </ion-header>
 
 <ion-content style="--background-color: white; color: white;">
-  <h3 class="bienvenida">
-    Bienvenido: {{ username }}
-  </h3>
+  <h2 class="bienvenida">
+    <ion-icon name="person-circle-outline"></ion-icon>
+    Bienvenido, {{ username }}.
+  </h2>
 
-  <ion-button style="margin-left: 70%;">Generar QR</ion-button>
+  <ion-button style="margin-left: 75%;">
+    <ion-icon name="scan"></ion-icon>
+    QR
+  </ion-button>
 
   <div class="calendario">
     <h3 class="calendari">Calendario</h3>

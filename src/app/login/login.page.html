@@ -14,7 +14,10 @@
     </ion-item>
   </ion-list>
 
-  <ion-button expand="block" (click)="validateLogin()">Ingresa</ion-button>
+  <ion-button expand="block" (click)="validateLogin()">
+    <ion-icon name="log-in-outline" slot="start"></ion-icon>
+    Ingresa
+  </ion-button>
 
   <div class="ion-text-center" style="margin-top: 20px;">
     <a  [routerLink]="['/recuperar']">Recuperar contraseña</a>
