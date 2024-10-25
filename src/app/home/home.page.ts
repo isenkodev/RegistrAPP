@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import {LoginServiceService} from '../service/login.service.service';
-import { CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHint, CapacitorBarcodeScannerTypeHintALLOption } from '@capacitor/barcode-scanner';
+import { LoginServiceService } from '../service/login.service.service';
+import { CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHint } from '@capacitor/barcode-scanner';
 
 @Component({
   selector: 'app-home',
@@ -11,27 +11,28 @@ import { CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHint, CapacitorBarc
 })
 export class HomePage {
 
-  username: string = 'guest';
+  username: string = 'guest'; // Valor predeterminado
 
   constructor(
     private router: Router,
     private alertController: AlertController,
     private loginService: LoginServiceService
   ) {
+    // Verificamos si el nombre de usuario fue pasado a través de la navegación
     const state = this.router.getCurrentNavigation()?.extras?.state;
     if (state && state['user']) {
       console.log(`User: ${state['user']}`);
-      this.username = state['user'];
+      this.username = state['user']; // Asignamos el valor de 'user' al username
     }
-
-    
   }
 
+  // Método para cerrar sesión
   onLogout() {
-    this.loginService.logout(); // Llama al método de logout
-    this.router.navigate(['/login']); // Redirigir al login después de logout
+    this.loginService.logout(); 
+    this.router.navigate(['/login']); 
   }
 
+  // Método para escanear el código QR
   result: string = ''
 
   async scan(): Promise<void> {
@@ -41,3 +42,4 @@ export class HomePage {
     this.result = result.ScanResult;
   }
 }
+
