@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: 'home',
     canActivate: [autenticadoGuard],
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
     path: '',
@@ -16,25 +16,29 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    canActivate:[noAutenticadoGuard],
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    canActivate: [noAutenticadoGuard],
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'recuperar',
-    canActivate:[noAutenticadoGuard],
-    loadChildren: () => import('./recuperar/recuperar.module').then( m => m.RecuperarPageModule)
+    canActivate: [noAutenticadoGuard],
+    loadChildren: () => import('./recuperar/recuperar.module').then(m => m.RecuperarPageModule)
   },
   {
     path: 'listaprofesores',
-    loadChildren: () => import('./listaprofesores/listaprofesores.module').then( m => m.ListaprofesoresPageModule)
+    loadChildren: () => import('./listaprofesores/listaprofesores.module').then(m => m.ListaprofesoresPageModule)
+  },
+  {
+    path: 'profileprofesor/:id', // Cambia a :id para aceptar un parámetro
+    loadChildren: () => import('./profileprofesor/profileprofesor.module').then(m => m.ProfileprofesorPageModule)
   },
   {
     path: 'error404',
-    loadChildren: () => import('./error404/error404.module').then( m => m.Error404PageModule)
+    loadChildren: () => import('./error404/error404.module').then(m => m.Error404PageModule)
   },
   {
-    path: '**',  
-    redirectTo: 'error404'  
+    path: '**',
+    redirectTo: 'error404'
   }
 ];
 
