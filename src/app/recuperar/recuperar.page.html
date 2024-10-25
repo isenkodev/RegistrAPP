@@ -5,6 +5,7 @@
 <ion-content [fullscreen]="true">
   <form #emailForm="ngForm" (ngSubmit)="onSubmit(emailForm)">
     <ion-list>
+      <ion-img src="assets/forgot_password.svg"></ion-img>
       <ion-item>
         <ion-label>Ingresa un email para recuperar la contraseña</ion-label>
       </ion-item>
@@ -21,7 +22,16 @@
           errorText="Email no valido"
         ></ion-input>
       </ion-item>
-      <ion-button type="submit" [routerLink]="['/login']" [disabled]="emailForm.invalid">Recuperar</ion-button>
+      <ion-button type="submit" [routerLink]="['/login']" [disabled]="emailForm.invalid">
+        Recuperar
+      </ion-button>
     </ion-list>
   </form>
 </ion-content>
+
+<ion-footer style="background: rgb(49, 49, 170);">
+  <ion-button routerLink="/login" expand="block" class="ion-magin-top">
+    <ion-icon name="close-outline"></ion-icon>
+    Volver al Login
+  </ion-button>
+</ion-footer>
