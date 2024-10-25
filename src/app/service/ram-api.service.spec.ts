@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { RamApiService } from './ram-api.service';
 
 describe('RamApiService', () => {
