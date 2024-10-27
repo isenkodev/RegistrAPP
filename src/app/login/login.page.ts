@@ -9,7 +9,6 @@ import { LoginServiceService } from '../service/login.service.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
-
   username!: string;
   password!: string;
   welcomeMessage: string = 'Bienvenido!';
@@ -21,26 +20,11 @@ export class LoginPage {
   ) {}
 
   validateLogin() {
-<<<<<<< HEAD
-    
-    const isLoggedIn = this.loginService.login(this.username, this.password);  // Usamos la instancia inyectada
+    const isLoggedIn = this.loginService.login(this.username, this.password);
     if (isLoggedIn) {
       this.toastMessage('Usuario y contraseña válidos', 'success');
       this.clean();
       this.router.navigate(['/home']);
-=======
-    const isLoggedIn = this.loginService.login(this.username, this.password);
-
-    if (isLoggedIn) {
-      this.toastMessage('Usuario y contraseña válidos', 'success');
-
-      const navigationExtras: NavigationExtras = {
-        state: {
-          user: this.username 
-        }
-      };
-      this.router.navigate(['/home'], navigationExtras);
->>>>>>> origin
     } else {
       this.toastMessage('Usuario o contraseña incorrectos, inténtelo de nuevo.', 'danger');
     }
@@ -61,3 +45,4 @@ export class LoginPage {
     this.password = '';
   }
 }
+
