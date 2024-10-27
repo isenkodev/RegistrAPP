@@ -21,10 +21,11 @@ export class LoginPage {
   ) {}
 
   validateLogin() {
+    
     const isLoggedIn = this.loginService.login(this.username, this.password);  // Usamos la instancia inyectada
     if (isLoggedIn) {
       this.toastMessage('Usuario y contraseña válidos', 'success');
-      // Aquí puedes agregar la navegación si es necesario
+      this.clean();
       this.router.navigate(['/home']);
     } else {
       this.toastMessage('Usuario o contraseña incorrectos, inténtelo de nuevo.', 'danger');
