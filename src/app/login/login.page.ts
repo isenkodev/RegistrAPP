@@ -17,16 +17,30 @@ export class LoginPage {
   constructor(
     private router: Router,
     private toastController: ToastController,
-    private loginService: LoginServiceService  // Inyectamos el servicio aquí
+    private loginService: LoginServiceService
   ) {}
 
   validateLogin() {
+<<<<<<< HEAD
     
     const isLoggedIn = this.loginService.login(this.username, this.password);  // Usamos la instancia inyectada
     if (isLoggedIn) {
       this.toastMessage('Usuario y contraseña válidos', 'success');
       this.clean();
       this.router.navigate(['/home']);
+=======
+    const isLoggedIn = this.loginService.login(this.username, this.password);
+
+    if (isLoggedIn) {
+      this.toastMessage('Usuario y contraseña válidos', 'success');
+
+      const navigationExtras: NavigationExtras = {
+        state: {
+          user: this.username 
+        }
+      };
+      this.router.navigate(['/home'], navigationExtras);
+>>>>>>> origin
     } else {
       this.toastMessage('Usuario o contraseña incorrectos, inténtelo de nuevo.', 'danger');
     }
@@ -36,13 +50,13 @@ export class LoginPage {
     const toast = await this.toastController.create({
       message: message,
       duration: 2000,
-      color: type,  // Suponiendo que 'success' y 'danger' son colores válidos en tu tema
+      color: type,
       position: 'top'
     });
     toast.present();
   }
 
-  clean(){
+  clean() {
     this.username = '';
     this.password = '';
   }

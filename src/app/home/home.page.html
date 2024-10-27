@@ -3,11 +3,22 @@
 </ion-header>
 
 <ion-content style="--background-color: white; color: white;">
+<<<<<<< HEAD
   <h3 class="bienvenida">
     Bienvenido: {{ username }}
     <ion-button style="margin-left: 70%;" (click)="onLogout()">Desconectar</ion-button>
   </h3>
 
+=======
+  <h2 class="bienvenida">
+    <ion-icon name="person-circle-outline"></ion-icon>
+    Bienvenido, {{ username }} .
+  </h2>
+
+  <ion-button style="margin-left: 80%;" (click)="scan()">
+    <ion-icon name="scan" ></ion-icon>
+  </ion-button>
+>>>>>>> origin
 
   <div class="calendario">
     <h3 class="calendari">Calendario</h3>
@@ -17,6 +28,7 @@
   <div class="asignaturas">
     <h3 class="calendari">Asignaturas</h3>
     <ion-button expand="block" [routerLink]="['/listaprofesores']"> 
+      <ion-icon name="people-outline"></ion-icon>
       Profesores
     </ion-button>
     <ion-list>
@@ -60,7 +72,9 @@
   </div>
 </ion-content>
 
-<ion-fab slot="fixed" vertical="bottom" horizontal="end">
-  <ion-fab-button (click)="scan()">
-    <ion-icon name="scan"></ion-icon>
-  </ion-fab-button>
+<ion-footer style="background: rgb(49, 49, 170);">
+  <ion-button expand="block" (click)="onLogout()"> 
+    <ion-icon name="exit-outline"></ion-icon>
+    Desconectar
+  </ion-button>
+</ion-footer>
