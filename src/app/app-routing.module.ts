@@ -25,14 +25,17 @@ const routes: Routes = [
   },
   {
     path: 'listaprofesores',
+    canActivate: [autenticadoGuard],
     loadChildren: () => import('./listaprofesores/listaprofesores.module').then(m => m.ListaprofesoresPageModule)
   },
   {
-    path: 'profileprofesor/:id', // Cambia a :id para aceptar un parámetro
+    path: 'profileprofesor/:id',
+    canActivate: [autenticadoGuard],
     loadChildren: () => import('./profileprofesor/profileprofesor.module').then(m => m.ProfileprofesorPageModule)
   },
   {
     path: 'error404',
+    canActivate: [noAutenticadoGuard],
     loadChildren: () => import('./error404/error404.module').then(m => m.Error404PageModule)
   },
   {
