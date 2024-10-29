@@ -3,7 +3,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form #emailForm="ngForm" (ngSubmit)="onSubmit(emailForm)">
+  <form>
     <ion-list>
       <ion-img src="assets/forgot_password.svg"></ion-img>
       <ion-item>
@@ -15,14 +15,14 @@
           name="email"
           [(ngModel)]="email"
           fill="solid"
-          required email
+          required
           label="Email"
           pattern="[a-zA-Z0-9!#$%&'*\/=?^_`\{\|\}~\+\-]([\.]?[a-zA-Z0-9!#$%&'*\/=?^_`\{\|\}~\+\-])+@[a-zA-Z0-9]([^@&%$\/\(\)=?¿!\.,:;]|\d)+[a-zA-Z0-9][\.][a-zA-Z]{2,4}([\.][a-zA-Z]{2})?"
           labelPlacement="floating"
           errorText="Email no valido"
         ></ion-input>
       </ion-item>
-      <ion-button type="submit" [routerLink]="['/login']" [disabled]="emailForm.invalid">
+      <ion-button type="submit" [routerLink]="['/login']" (click)="recuperar()">
         Recuperar
       </ion-button>
     </ion-list>

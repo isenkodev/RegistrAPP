@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { LoginServiceService } from '../service/login.service.service';
+import { FirebaseService } from '../service/firebase.service';
 
 @Component({
   selector: 'app-login',
@@ -9,31 +10,28 @@ import { LoginServiceService } from '../service/login.service.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
-
-  username!: string;
-  password!: string;
-  welcomeMessage: string = 'Bienvenido!';
+  email: string = '';
+  pass: string = '';
 
   constructor(
     private router: Router,
     private toastController: ToastController,
-    private loginService: LoginServiceService
+    private loginService: LoginServiceService,
+    private firebase: FirebaseService,
   ) {}
 
-  validateLogin() {
-    const isLoggedIn = this.loginService.login(this.username, this.password);
-
-    if (isLoggedIn) {
-      this.toastMessage('Usuario y contraseña válidos', 'success');
-
-      const navigationExtras: NavigationExtras = {
-        state: {
-          user: this.username 
-        }
-      };
-      this.router.navigate(['/home'], navigationExtras);
-    } else {
-      this.toastMessage('Usuario o contraseña incorrectos, inténtelo de nuevo.', 'danger');
+  async login() {
+    try {
+      let usuario = await this.firebase.auth(this.email, this.pass);
+      if (usuario) {
+        this.loginService.login(); 
+        this.router.navigate(['/home']); 
+      } else {
+        this.toastMessage('Error en la autenticación.', 'danger');
+      }
+    } catch (error) {
+      console.error(error);
+      this.toastMessage('Error en la autenticación.', 'danger');
     }
   }
 
@@ -42,13 +40,8 @@ export class LoginPage {
       message: message,
       duration: 2000,
       color: type,
-      position: 'top'
+      position: 'top',
     });
     toast.present();
-  }
-
-  clean() {
-    this.username = '';
-    this.password = '';
   }
 }
