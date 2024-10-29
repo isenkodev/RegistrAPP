@@ -20,9 +20,9 @@ export class HomePage {
   ) {
     // Verificamos si el nombre de usuario fue pasado a través de la navegación
     const state = this.router.getCurrentNavigation()?.extras?.state;
-    if (state && state['user']) {
-      console.log(`User: ${state['user']}`);
-      this.username = state['user']; // Asignamos el valor de 'user' al username
+    if (state && state['email']) {
+      console.log(`User: ${state['email']}`);
+      this.username = state['email']; // Asignamos el valor de 'user' al username
     }
   }
 
