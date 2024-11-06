@@ -1,47 +1,97 @@
-import { Component } from '@angular/core';
-import { Character } from '../models/character';
-import { AlertController, LoadingController } from '@ionic/angular';
-import { RamApiService } from '../service/ram-api.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router'; 
+import { RamApiService } from '../service/ram-api.service'; 
+import { Character } from '../models/character'; 
+import { NavController } from '@ionic/angular'; 
 
 @Component({
   selector: 'app-listaprofesores',
   templateUrl: './listaprofesores.page.html',
   styleUrls: ['./listaprofesores.page.scss'],
 })
-export class ListaprofesoresPage {
-  results: Character[] = []; 
+export class ListaprofesoresPage implements OnInit {
+  characterIds: number[] = [127, 241, 256, 242, 243, 107];
+  charactersDetails: Character[] = [];  
 
   constructor(
-    private ramApiService: RamApiService,
-    private loadingController: LoadingController,
-    private alertController: AlertController
-  ) {
-    this.getSelectedCharacters(); 
-  }
+    private activatedRoute: ActivatedRoute, 
+    private ramApiService: RamApiService, 
+    private navCtrl: NavController  
+  ) {}
 
-  async getSelectedCharacters() {
-    const loading = await this.loadingController.create({
-      message: 'Cargando personajes...'
-    });
-    loading.present();
-
-    const characterIds = [127, 241, 256, 242, 243, 107]; 
-
-    this.ramApiService.getCharactersByIds(characterIds).subscribe({
-      next: (data) => {
-        console.log("Personajes recibidos:", data);
-        this.results = data; 
-        loading.dismiss(); 
+  ngOnInit() {
+    this.ramApiService.getCharactersByIds(this.characterIds).subscribe({
+      next: (characters: Character[]) => { 
+        console.log('Personajes recibidos:', characters); 
+        if (characters.length > 0) {
+          this.charactersDetails = characters; 
+        } else {
+          console.warn("No se encontraron detalles para los personajes.");
+          this.setDefaultCharacters(); 
+        }
       },
-      error: (error) => {
-        console.error("Error al obtener los personajes:", error);
-        loading.dismiss();
-        this.alertController.create({
-          header: 'Error',
-          message: 'Error al obtener los personajes',
-          buttons: ['OK']
-        }).then(alert => alert.present());
+      error: (err) => {
+        console.error("Error al obtener los detalles de los personajes", err);
+        this.setDefaultCharacters(); 
       }
     });
+  }
+
+  goBack() {
+    this.navCtrl.back(); 
+  }
+
+  private setDefaultCharacters() {
+    this.charactersDetails = [
+      {
+        id: 127,
+        name: "Rick Sanchez",
+        gender: "Male",
+        status: "Alive",
+        species: "Human",
+        image: "https://rickandmortyapi.com/api/character/avatar/127.jpeg"
+      },
+      {
+        id: 241,
+        name: "Morty Smith",
+        gender: "Male",
+        status: "Alive",
+        species: "Human",
+        image: "https://rickandmortyapi.com/api/character/avatar/241.jpeg"
+      },
+      {
+        id: 256,
+        name: "Summer Smith",
+        gender: "Female",
+        status: "Alive",
+        species: "Human",
+        image: "https://rickandmortyapi.com/api/character/avatar/256.jpeg"
+      },
+      {
+        id: 242,
+        name: "Beth Smith",
+        gender: "Female",
+        status: "Alive",
+        species: "Human",
+        image: "https://rickandmortyapi.com/api/character/avatar/242.jpeg"
+      },
+      {
+        id: 243,
+        name: "Jerry Smith",
+        gender: "Male",
+        status: "Alive",
+        species: "Human",
+        image: "https://rickandmortyapi.com/api/character/avatar/243.jpeg"
+      },
+      {
+        id: 107,
+        name: "Birdperson",
+        gender: "Male",
+        status: "Alive",
+        species: "Birdperson",
+        image: "https://rickandmortyapi.com/api/character/avatar/107.jpeg"
+      }
+    ];
+    console.log("Se configuraron personajes por defecto:", this.charactersDetails);
   }
 }
