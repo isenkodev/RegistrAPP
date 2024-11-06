@@ -1,23 +1,29 @@
 <ion-header [translucent]="false" style="color: whitesmoke; background-color: rgb(49, 49, 170);" class="ion-border">
-    <h1 style="text-align: center; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">RegistrAPP</h1>
+  <h1 style="text-align: center; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">RegistrAPP</h1>
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title style="color: rgb(242, 242, 242); text-align: center">
-        Lista Profesores
-      </ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list>
-        <ion-item *ngFor="let character of results" [routerLink]="['/profileprofesor', character.id]">
-          <ion-label>{{character.name}}</ion-label>
-          <img src="{{character.image}}" width="50px" height="50px" alt="{{character.name}}" slot="start" />
-        </ion-item>           
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+  <ion-card-header>
+    <ion-card-title style="color: rgb(242, 242, 242); text-align: center">
+      Lista Profesores
+    </ion-card-title>
+  </ion-card-header>
+  <ng-container *ngIf="charactersDetails.length > 0; else loading">
+    <ion-card *ngFor="let character of charactersDetails">
+      <img [src]="character.image" alt="{{ character.name }}" />
+      <ion-card-header>
+        <ion-card-title>{{ character.name }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Especie:</strong> {{ character.species }}</p>
+        <p><strong>Género:</strong> {{ character.gender }}</p>
+        <p><strong>Estado:</strong> {{ character.status }}</p>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+  <ng-template #loading>
+    <p style="text-align: center;">Cargando detalles del profesor...</p>
+  </ng-template>
 </ion-content>
 
 <ion-footer>
