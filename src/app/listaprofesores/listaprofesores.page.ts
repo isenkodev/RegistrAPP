@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'; 
 import { RamApiService } from '../service/ram-api.service'; 
 import { Character } from '../models/character'; 
 import { NavController } from '@ionic/angular'; 
@@ -14,7 +13,6 @@ export class ListaprofesoresPage implements OnInit {
   charactersDetails: Character[] = [];  
 
   constructor(
-    private activatedRoute: ActivatedRoute, 
     private ramApiService: RamApiService, 
     private navCtrl: NavController  
   ) {}
@@ -95,3 +93,4 @@ export class ListaprofesoresPage implements OnInit {
     console.log("Se configuraron personajes por defecto:", this.charactersDetails);
   }
 }
+
