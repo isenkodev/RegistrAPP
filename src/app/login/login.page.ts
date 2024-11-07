@@ -24,8 +24,14 @@ export class LoginPage {
     try {
       let usuario = await this.firebase.auth(this.email, this.pass);
       if (usuario) {
-        this.loginService.login(); 
-        this.router.navigate(['/home']); 
+        this.loginService.login();
+    
+        if (this.email === 'g.huerta@duocuc.cl') {
+          this.router.navigate(['/registrarad']);
+        } else {
+          this.router.navigate(['/home']);
+        }
+
       } else {
         this.toastMessage('Error en la autenticación.', 'danger');
       }
