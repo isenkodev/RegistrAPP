@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { noAutenticadoGuard } from './guard/no-autenticado.guard';
 import { autenticadoGuard } from './guard/autenticado.guard';
+
 const routes: Routes = [
   {
     path: 'home',
-    canActivate: [autenticadoGuard], // Protege la ruta
+    canActivate: [autenticadoGuard], 
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
@@ -15,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    canActivate: [noAutenticadoGuard], // Permite el acceso solo a usuarios no autenticados
+    canActivate: [noAutenticadoGuard], 
     loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
@@ -27,6 +28,11 @@ const routes: Routes = [
     path: 'listaprofesores',
     canActivate: [autenticadoGuard],
     loadChildren: () => import('./listaprofesores/listaprofesores.module').then(m => m.ListaprofesoresPageModule)
+  },
+  {
+    path: 'registrarad',
+    canActivate: [autenticadoGuard],
+    loadChildren: () => import('./registrarad/registrarad.module').then(m => m.RegistraradPageModule)
   },
   {
     path: 'error404',
