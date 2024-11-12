@@ -8,6 +8,8 @@
     Bienvenido.
   </h2>
 
+
+
   <!-- Botón de escanear QR centrado -->
   <div style="text-align: center; margin-bottom: 20px;">
     <ion-button (click)="scan()">
@@ -17,10 +19,9 @@
   </div>
 
   <!-- Calendario con borde y tamaño ajustado -->
-  <div class="calendario">
-    <h3 class="calendari">Calendario</h3>
-    <ion-datetime style="margin-left: 10%; border-radius: 20px;" display-format="MMMM DD, YYYY"></ion-datetime>
-  </div>
+
+  <full-calendar [options]="calendarOptions"></full-calendar>
+
   <div class="asignaturas">
     <h3 class="calendari">Asignaturas</h3>
     <ion-button expand="block" [routerLink]="['/listaprofesores']"> 

@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { LoginServiceService } from '../service/login.service.service';
 import { CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHint } from '@capacitor/barcode-scanner';
+import { CalendarOptions } from '@fullcalendar/core'; // useful for typechecking
+import dayGridPlugin from '@fullcalendar/daygrid';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +18,9 @@ export class HomePage {
   constructor(
     private router: Router,
     private alertController: AlertController,
-    private loginService: LoginServiceService
+    private loginService: LoginServiceService,
+    
+ 
   ) {
     // Verificamos si el nombre de usuario fue pasado a través de la navegación
     const state = this.router.getCurrentNavigation()?.extras?.state;
@@ -42,6 +46,12 @@ export class HomePage {
     this.result = result.ScanResult;
   }
 
+  calendarOptions: CalendarOptions = {
+    initialView: 'dayGridMonth',
+    plugins: [dayGridPlugin]
+  
+  }
+  
 
 }
 

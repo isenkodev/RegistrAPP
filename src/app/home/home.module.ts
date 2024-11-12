@@ -3,24 +3,19 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
-
-import { HomePageRoutingModule } from './home-routing.module';
-
-import { CalendarModule } from '../modules/calendar/calendar.module';
 import { FullCalendarModule } from '@fullcalendar/angular';
 
+import { HomePageRoutingModule } from './home-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule, 
-    CalendarModule,
+    HomePageRoutingModule,
     FullCalendarModule
   ],
   declarations: [HomePage]
 })
 
-export class CalendarComponent{}
 export class HomePageModule {}
