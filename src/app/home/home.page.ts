@@ -41,5 +41,7 @@ export class HomePage {
     });
     this.result = result.ScanResult;
   }
+
+
 }
 

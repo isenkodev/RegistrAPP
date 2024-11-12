@@ -26,11 +26,7 @@ export class LoginPage {
       if (usuario) {
         this.loginService.login();
     
-<<<<<<< Updated upstream
-        if (this.email === 'admin@duocuc.cl') {
-=======
         if (this.email === 'g.huerta@duocuc.cl') {
->>>>>>> Stashed changes
           this.router.navigate(['/registrarad']);
         } else {
           this.router.navigate(['/home']);
