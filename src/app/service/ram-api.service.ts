@@ -16,7 +16,8 @@ export class RamApiService {
   }
 
   getCharactersByIds(ids: number[]): Observable<Character[]> {
-    const url = `${this.apiUrl}${ids.join(',')}`; 
+  const url = `${this.apiUrl}${ids.join(',')}`; 
+  console.log(url)
     return this.http.get<Character[]>(url);
   }
 }

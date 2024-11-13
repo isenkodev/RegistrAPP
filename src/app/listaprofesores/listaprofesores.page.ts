@@ -9,7 +9,7 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./listaprofesores.page.scss'],
 })
 export class ListaprofesoresPage implements OnInit {
-  characterIds: number[] = [127, 241, 256, 242, 243, 107];
+  characterIds: number[] = [81, 241, 256, 242, 243, 107];
   charactersDetails: Character[] = [];  
 
   constructor(
@@ -22,15 +22,18 @@ export class ListaprofesoresPage implements OnInit {
       next: (characters: Character[]) => { 
         console.log('Personajes recibidos:', characters); 
         if (characters.length > 0) {
-          this.charactersDetails = characters; 
+          this.charactersDetails = characters.map((el) => {
+            const defaultCharacter = this.setDefaultCharacters().find(c => c.id === el.id);
+            return defaultCharacter ? { ...el, name: defaultCharacter.name } : el;
+          });
         } else {
           console.warn("No se encontraron detalles para los personajes.");
-          this.setDefaultCharacters(); 
+          this.charactersDetails = this.setDefaultCharacters(); 
         }
       },
       error: (err) => {
         console.error("Error al obtener los detalles de los personajes", err);
-        this.setDefaultCharacters(); 
+        this.charactersDetails = this.setDefaultCharacters(); 
       }
     });
   }
@@ -39,19 +42,19 @@ export class ListaprofesoresPage implements OnInit {
     this.navCtrl.back(); 
   }
 
-  private setDefaultCharacters() {
-    this.charactersDetails = [
+  private setDefaultCharacters(): Character[] {
+    return [
       {
-        id: 127,
-        name: "Rick Sanchez",
+        id: 81,
+        name: "Carlos Fernando Martinez Sanchez",
         gender: "Male",
         status: "Alive",
         species: "Human",
-        image: "https://rickandmortyapi.com/api/character/avatar/127.jpeg"
+        image: "https://rickandmortyapi.com/api/character/avatar/81.jpeg"
       },
       {
         id: 241,
-        name: "Morty Smith",
+        name: "Daniel Enrique Riquelme Rigot",
         gender: "Male",
         status: "Alive",
         species: "Human",
@@ -59,7 +62,7 @@ export class ListaprofesoresPage implements OnInit {
       },
       {
         id: 256,
-        name: "Summer Smith",
+        name: "Jose Santos Jara Fuentes",
         gender: "Female",
         status: "Alive",
         species: "Human",
@@ -67,7 +70,7 @@ export class ListaprofesoresPage implements OnInit {
       },
       {
         id: 242,
-        name: "Beth Smith",
+        name: "Leonardo Osvaldo Muñoz Villalón",
         gender: "Female",
         status: "Alive",
         species: "Human",
@@ -75,7 +78,7 @@ export class ListaprofesoresPage implements OnInit {
       },
       {
         id: 243,
-        name: "Jerry Smith",
+        name: "Ernesto Leonardo Velasquez Velasquez",
         gender: "Male",
         status: "Alive",
         species: "Human",
@@ -83,14 +86,12 @@ export class ListaprofesoresPage implements OnInit {
       },
       {
         id: 107,
-        name: "Birdperson",
+        name: "Monica Natalia Panes Martinez",
         gender: "Male",
         status: "Alive",
         species: "Birdperson",
         image: "https://rickandmortyapi.com/api/character/avatar/107.jpeg"
       }
     ];
-    console.log("Se configuraron personajes por defecto:", this.charactersDetails);
   }
 }
-
