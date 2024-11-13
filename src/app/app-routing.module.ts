@@ -26,7 +26,7 @@ const routes: Routes = [
   },
   {
     path: 'listaprofesores',
-    // canActivate: [autenticadoGuard],
+    canActivate: [autenticadoGuard],
     loadChildren: () => import('./listaprofesores/listaprofesores.module').then(m => m.ListaprofesoresPageModule)
   },
   {

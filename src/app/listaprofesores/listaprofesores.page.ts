@@ -23,8 +23,15 @@ export class ListaprofesoresPage implements OnInit {
         console.log('Personajes recibidos:', characters); 
         if (characters.length > 0) {
           this.charactersDetails = characters.map((el) => {
+
             const defaultCharacter = this.setDefaultCharacters().find(c => c.id === el.id);
-            return defaultCharacter ? { ...el, name: defaultCharacter.name } : el;
+  
+            return defaultCharacter ? { 
+              ...el, 
+              name: defaultCharacter.name, 
+              section: defaultCharacter.section,
+              subject: defaultCharacter.subject 
+            } : el;
           });
         } else {
           console.warn("No se encontraron detalles para los personajes.");
@@ -47,51 +54,45 @@ export class ListaprofesoresPage implements OnInit {
       {
         id: 81,
         name: "Carlos Fernando Martinez Sanchez",
-        gender: "Male",
-        status: "Alive",
-        species: "Human",
+        subject: "Programacion de Aplicaciones Moviles", 
+        section: "008V",
         image: "https://rickandmortyapi.com/api/character/avatar/81.jpeg"
       },
       {
         id: 241,
         name: "Daniel Enrique Riquelme Rigot",
-        gender: "Male",
-        status: "Alive",
-        species: "Human",
+        subject: "Calidad de Software",  
+        section: "008V",
         image: "https://rickandmortyapi.com/api/character/avatar/241.jpeg"
       },
       {
         id: 256,
         name: "Jose Santos Jara Fuentes",
-        gender: "Female",
-        status: "Alive",
-        species: "Human",
+        subject: "Ingles Intermedio", 
+        section: "018V",
         image: "https://rickandmortyapi.com/api/character/avatar/256.jpeg"
       },
       {
         id: 242,
         name: "Leonardo Osvaldo Muñoz Villalón",
-        gender: "Female",
-        status: "Alive",
-        species: "Human",
+        subject: "Etica Para El Trabajo", 
+        section: "006V", 
         image: "https://rickandmortyapi.com/api/character/avatar/242.jpeg"
       },
       {
         id: 243,
         name: "Ernesto Leonardo Velasquez Velasquez",
-        gender: "Male",
-        status: "Alive",
-        species: "Human",
+        subject: "Arquitectura", 
+        section: "008V", 
         image: "https://rickandmortyapi.com/api/character/avatar/243.jpeg"
       },
       {
         id: 107,
         name: "Monica Natalia Panes Martinez",
-        gender: "Male",
-        status: "Alive",
-        species: "Birdperson",
+        subject: "Estadistica Descriptiva", 
+        section: "010V", 
         image: "https://rickandmortyapi.com/api/character/avatar/107.jpeg"
       }
     ];
-  }
+  }  
 }
