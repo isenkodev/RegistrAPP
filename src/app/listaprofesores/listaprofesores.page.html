@@ -14,10 +14,9 @@
       <ion-card-header>
         <ion-card-title>{{ character.name }}</ion-card-title>
       </ion-card-header>
-      <ion-card-content>
-        <p><strong>Especie:</strong> {{ character.species }}</p>
-        <p><strong>Género:</strong> {{ character.gender }}</p>
-        <p><strong>Estado:</strong> {{ character.status }}</p>
+      <ion-card-content>   
+        <p>Asignatura: {{ character.subject ? character.subject : 'Sin asignatura' }}</p>
+        <p>Sección: {{ character.section ? character.section : 'Sin asignar' }}</p>
       </ion-card-content>
     </ion-card>
   </ng-container>
