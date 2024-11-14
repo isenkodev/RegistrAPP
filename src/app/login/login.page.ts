@@ -26,7 +26,7 @@ export class LoginPage {
       if (usuario) {
         this.loginService.login();
     
-        if (this.email === 'g.huerta@duocuc.cl') {
+        if (this.email === 'admin@duocuc.cl') {
           this.router.navigate(['/registrarad']);
         } else {
           this.router.navigate(['/home']);
