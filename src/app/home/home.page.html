@@ -19,8 +19,10 @@
   </div>
 
   <!-- Calendario con borde y tamaño ajustado -->
-
-  <full-calendar [options]="calendarOptions"></full-calendar>
+  <button (click)="toggleWeekends()">toggle weekends</button>
+  <full-calendar
+   [options]="calendarOptions"
+  ></full-calendar>
 
   <div class="asignaturas">
     <h3 class="calendari">Asignaturas</h3>
