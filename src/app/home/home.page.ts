@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { LoginServiceService } from '../service/login.service.service';
 import { CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHint } from '@capacitor/barcode-scanner';
-import { CalendarOptions } from '@fullcalendar/core';
-import { FullCalendarComponent } from '@fullcalendar/angular'; // Asegúrate de tener esta importación
+import { CalendarOptions, EventInput } from '@fullcalendar/core';
+import { FullCalendarComponent } from '@fullcalendar/angular'; // Importamos el componente FullCalendar
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
@@ -67,10 +67,11 @@ export class HomePage implements AfterViewInit {
     plugins: [dayGridPlugin, interactionPlugin],
     weekends: false,  // Fines de semana inicialmente desactivados
     events: [
-      { title: 'Event 1', date: '2024-11-01' },
-      { title: 'Event 2', date: '2024-11-02' },
+      { title: 'Event 1', date: '2024-11-01', id: '1' }, // Asignamos un ID único para el evento
+      { title: 'Event 2', date: '2024-11-02', id: '2' },
     ],
     dateClick: (arg) => this.handleDateClick(arg),  // Llamar a la función cuando se hace clic en una fecha
+    eventClick: (info) => this.handleEventClick(info), // Capturamos el clic en un evento para eliminarlo
   };
 
   // Método que se ejecuta cuando el usuario hace clic en una fecha
@@ -82,8 +83,22 @@ export class HomePage implements AfterViewInit {
       calendarApi.addEvent({
         title: eventTitle,
         date: arg.dateStr,  // Fecha seleccionada por el usuario
+        id: new Date().getTime().toString(),  // Asignamos un ID único al evento (usando el timestamp)
       });
       alert('Evento agregado para: ' + arg.dateStr);
+    }
+  }
+
+  // Método para manejar el clic en un evento (para eliminarlo)
+  handleEventClick(info: any) {
+    const eventId = info.event.id; // Obtenemos el ID del evento
+    const eventTitle = info.event.title; // Obtenemos el título del evento
+
+    // Pedir confirmación al usuario para eliminar el evento
+    if (confirm(`¿Estás seguro de que quieres eliminar el evento: "${eventTitle}"?`)) {
+      const calendarApi = this.fullCalendar.getApi();
+      calendarApi.getEventById(eventId)?.remove();  // Eliminar el evento usando su ID
+      alert(`Evento "${eventTitle}" eliminado`);
     }
   }
 
