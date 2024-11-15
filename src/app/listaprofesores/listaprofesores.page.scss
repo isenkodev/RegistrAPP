@@ -1,0 +1,33 @@
+ion-card {
+  margin: 20px;
+  text-align: center;
+  background-color: #664a99; /* Cambia este color a tu preferencia */
+  border-radius: 12px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+ion-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+ion-card-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #ddc3e9; 
+}
+
+ion-card-content p {
+  font-size: 1.1em;
+  color: #ddc3e9; 
+}
+
+ion-card-header {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+ion-card-header ion-card-title {
+  color: rgb(242, 242, 242); 
+  text-align: center;
+}

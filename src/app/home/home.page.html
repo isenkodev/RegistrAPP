@@ -3,27 +3,27 @@
 </ion-header>
 
 <ion-content style="--background-color: white; color: white;">
-<<<<<<< HEAD
-  <h3 class="bienvenida">
-    Bienvenido: {{ username }}
-    <ion-button style="margin-left: 70%;" (click)="onLogout()">Desconectar</ion-button>
-  </h3>
 
-=======
   <h2 class="bienvenida">
     <ion-icon name="person-circle-outline"></ion-icon>
-    Bienvenido, {{ username }} .
+    Bienvenido.
   </h2>
 
-  <ion-button style="margin-left: 80%;" (click)="scan()">
-    <ion-icon name="scan" ></ion-icon>
-  </ion-button>
->>>>>>> origin
 
-  <div class="calendario">
-    <h3 class="calendari">Calendario</h3>
-    <ion-datetime style="margin-left: 10%;" display-format="MMMM DD, YYYY"></ion-datetime>
+
+  <!-- Botón de escanear QR centrado -->
+  <div style="text-align: center; margin-bottom: 20px;">
+    <ion-button (click)="scan()">
+      <ion-icon name="scan"></ion-icon>
+      Escanear QR
+    </ion-button>
   </div>
+
+  <!-- Calendario con borde y tamaño ajustado -->
+  <button (click)="toggleWeekends()">toggle weekends</button>
+  <full-calendar
+   [options]="calendarOptions"
+  ></full-calendar>
 
   <div class="asignaturas">
     <h3 class="calendari">Asignaturas</h3>
@@ -78,3 +78,10 @@
     Desconectar
   </ion-button>
 </ion-footer>
+
+<style>
+  .red-button {
+    background-color: red !important;
+    color: white !important;
+  }
+</style>

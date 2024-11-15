@@ -7,14 +7,14 @@
     <ion-img src="assets/login.svg"></ion-img>
     <h5>Iniciar Sesión</h5>
     <ion-item>  
-      <ion-input label="Usuario:" [(ngModel)]="username"></ion-input>
+      <ion-input label="Usuario:" [(ngModel)]="email"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input label="Contraseña:" type="password" [(ngModel)]="password"></ion-input>
+      <ion-input label="Contraseña:" type="password" [(ngModel)]="pass"></ion-input>
     </ion-item>
   </ion-list>
 
-  <ion-button expand="block" (click)="validateLogin()">
+  <ion-button expand="block" (click)="login()">
     <ion-icon name="log-in-outline" slot="start"></ion-icon>
     Ingresa
   </ion-button>

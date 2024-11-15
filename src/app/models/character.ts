@@ -1,24 +1,22 @@
 export class Character {
     id: number;
     name: string;
-    gender: string;
-    status: string;
-    species: string;
     image: string;
+    section: string;  
+    subject: string;  
 
-    constructor (
+    constructor(
         id: number,
         name: string,
-        gender: string,
-        status: string,
-        species: string,
-        image: string
+        image: string,
+        section: string,
+        subject: string  
     ) {
         this.id = id;
         this.name = name;
-        this.gender = gender;
-        this.status = status;
-        this.species = species;
         this.image = image;
+        this.section = section;
+        this.subject = subject;
     }
 }
+

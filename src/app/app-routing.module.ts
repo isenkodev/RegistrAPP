@@ -6,7 +6,7 @@ import { autenticadoGuard } from './guard/autenticado.guard';
 const routes: Routes = [
   {
     path: 'home',
-    canActivate: [autenticadoGuard],
+    canActivate: [autenticadoGuard], 
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    canActivate: [noAutenticadoGuard],
+    canActivate: [noAutenticadoGuard], 
     loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
@@ -26,14 +26,17 @@ const routes: Routes = [
   },
   {
     path: 'listaprofesores',
+    canActivate: [autenticadoGuard],
     loadChildren: () => import('./listaprofesores/listaprofesores.module').then(m => m.ListaprofesoresPageModule)
   },
   {
-    path: 'profileprofesor/:id', // Cambia a :id para aceptar un parámetro
-    loadChildren: () => import('./profileprofesor/profileprofesor.module').then(m => m.ProfileprofesorPageModule)
+    path: 'registrarad',
+    canActivate: [autenticadoGuard],
+    loadChildren: () => import('./registrarad/registrarad.module').then(m => m.RegistraradPageModule)
   },
   {
     path: 'error404',
+    canActivate: [noAutenticadoGuard],
     loadChildren: () => import('./error404/error404.module').then(m => m.Error404PageModule)
   },
   {
