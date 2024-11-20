@@ -6,7 +6,7 @@ import { autenticadoGuard } from './guard/autenticado.guard';
 const routes: Routes = [
   {
     path: 'home',
-    //canActivate: [autenticadoGuard], 
+    canActivate: [autenticadoGuard], 
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
@@ -39,11 +39,6 @@ const routes: Routes = [
     canActivate: [noAutenticadoGuard],
     loadChildren: () => import('./error404/error404.module').then(m => m.Error404PageModule)
   },
-  {
-    path: 'asigregis',
-    loadChildren: () => import('./asigregis/asigregis.module').then( m => m.AsigregisPageModule)
-  },
-
   {
     path: '**',
     redirectTo: 'error404'

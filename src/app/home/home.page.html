@@ -9,9 +9,6 @@
     Bienvenido.
   </h2>
 
-
-
-  <!-- Botón de escanear QR centrado -->
   <div style="text-align: center; margin-bottom: 20px;">
     <ion-button (click)="scan()">
       <ion-icon name="scan"></ion-icon>
@@ -19,10 +16,9 @@
     </ion-button>
   </div>
 
-  <!-- Calendario con borde y tamaño ajustado -->
   <button (click)="toggleWeekends()">toggle weekends</button>
   <full-calendar
-   [options]="calendarOptions"
+    [options]="calendarOptions"
   ></full-calendar>
 
   <div class="asignaturas">
@@ -31,18 +27,22 @@
       <ion-icon name="people-outline"></ion-icon>
       Profesores
     </ion-button>
-   
   </div>
 
-  <div class="asignaturas">
-    <h3 class="calendari">Asignaturas</h3>
-    <ion-button expand="block" [routerLink]="['/asigregis']"> 
-      <img width="30" height="30" src="../assets/icon/ico.png" alt="book"/>Asignaturas
-    </ion-button>
-  </div>
-</ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Asistencias Registradas</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let item of asistenciasList">
+          <ion-label>{{ item }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 
-<ion-footer style="background: rgb(49, 49, 170);">
+<ion-footer>
   <ion-button expand="block" (click)="onLogout()"> 
     <ion-icon name="exit-outline"></ion-icon>
     Desconectar
