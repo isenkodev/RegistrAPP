@@ -7,6 +7,7 @@ import { FullCalendarComponent } from '@fullcalendar/angular';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,9 @@ export class HomePage implements AfterViewInit {
   asistenciasList: string[] = this.cargarAsistencias(); 
 
   @ViewChild(FullCalendarComponent) fullCalendar!: FullCalendarComponent;
+
+  latitude: string = '';
+  longitude: string = '';
 
   constructor(
     private router: Router,
@@ -93,6 +97,23 @@ export class HomePage implements AfterViewInit {
     return `Asistencia registrada en ${materia} | 008V | ${sala} | ${fecha}`;
   }
 
+  async getCurrentPosition() {
+    try {
+      const position = await Geolocation.getCurrentPosition();
+      if (position && position.coords) {
+        // Guardamos las coordenadas
+        this.latitude = position.coords.latitude.toString();
+        this.longitude = position.coords.longitude.toString();
+
+        console.log('Ubicación obtenida:', position);
+      } else {
+        console.error('No se pudo obtener la ubicación');
+      }
+    } catch (error) {
+      console.error('Error al obtener la ubicación', error);
+    }
+  }
+  
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
