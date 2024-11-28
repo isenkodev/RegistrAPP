@@ -52,14 +52,20 @@ export class HomePage implements AfterViewInit {
 
       this.agregarAsistencia(asistenciaMensaje);
 
-      this.showSuccessMessage();
+      // Obtener ubicación antes de mostrar el mensaje
+      await this.getCurrentPosition();
+      await this.showSuccessMessage(this.latitude, this.longitude);
     }
   }
 
-  async showSuccessMessage() {
+  async showSuccessMessage(latitude: string, longitude: string) {
     const alert = await this.alertController.create({
       header: '¡Éxito!',
-      message: '¡Asistencia registrada con éxito!',
+      message: `
+        ¡Asistencia registrada con éxito!
+        Latitud: ${latitude}
+        Longitud: ${longitude}
+      `,
       buttons: ['OK'],
     });
     await alert.present();
@@ -120,8 +126,8 @@ export class HomePage implements AfterViewInit {
     plugins: [dayGridPlugin, interactionPlugin],
     weekends: false,  
     events: [
-      { title: 'Event 1', date: '2024-11-01', id: '1' },
-      { title: 'Event 2', date: '2024-11-02', id: '2' },
+      { title: 'Día del completo', date: '2024-11-01', id: '1' },
+      { title: 'Día del pan con queso', date: '2024-11-02', id: '2' },
     ],
     dateClick: (arg) => this.handleDateClick(arg),
     eventClick: (info) => this.handleEventClick(info),
@@ -158,7 +164,6 @@ export class HomePage implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-  
     console.log(this.fullCalendar.getApi()); 
   }
   onLogout() {
