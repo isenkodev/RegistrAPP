@@ -27,6 +27,7 @@ export class LoginPage {
         this.loginService.login();
     
         if (this.email === 'admin@duocuc.cl') {
+          
           this.router.navigate(['/registrarad']);
         } else {
           this.router.navigate(['/home']);
