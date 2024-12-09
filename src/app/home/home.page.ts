@@ -99,7 +99,9 @@ export class HomePage implements AfterViewInit, OnInit {
   }
 
   createAsistenciaMensaje(codigo: string): string {
-    const fecha = new Date().toLocaleDateString();
+    const fechaQR = this.extraerFechaDeQR(codigo); // Método que extrae la fecha del QR
+    const fecha = fechaQR || new Date().toLocaleDateString(); // Usa la fecha del QR o la fecha actual
+
     let materia = '';
     let sala = '';
 
@@ -119,10 +121,18 @@ export class HomePage implements AfterViewInit, OnInit {
       materia = 'Estadística descriptiva';
       sala = 'L3';
     } else {
-      return 'Código QR no reconocido';
+      // Agregar la fecha al mensaje de error si el código QR no es reconocido
+      return `Asignatura no registrada o código QR inválido. Por favor, revisa el código o comunícate con el administrador. Fecha: ${fecha}`;
     }
 
     return `Asistencia registrada en ${materia} | 008V | ${sala} | ${fecha}`;
+  }
+
+  extraerFechaDeQR(codigo: string): string | null {
+    // Implementa aquí la lógica para extraer la fecha del código QR si está presente
+    // Suponiendo que la fecha esté en el formato "fecha:DD/MM/YYYY" dentro del QR
+    const fechaMatch = codigo.match(/fecha:(\d{2}\/\d{2}\/\d{4})/);
+    return fechaMatch ? fechaMatch[1] : null;
   }
 
   async getCurrentPosition() {
