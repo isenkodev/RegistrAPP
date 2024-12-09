@@ -1,15 +1,49 @@
-.bienvenida{
-  margin-left: 1%;
-  color: white;
-  font-family: 'Segoe UI';
-  font-weight: 20px;
-  font-size: 20px;
+.bienvenida {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: rgb(49, 49, 170);
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: bold;
+  font-size: 24px;
 }
 
-.calendari{
-   margin-left: 40%;
-    color: white;
-    font-family: 'Segoe UI';
-    font-weight: 20px;
-    font-size: 20px;
-  }
+.calendari {
+  text-align: center;
+  color: rgb(49, 49, 170);
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+ion-button {
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+ion-card {
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.toggle-button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background: rgb(49, 49, 170);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.toggle-button:hover {
+  background: rgb(70, 70, 200);
+}
+
+ion-footer {
+  background-color: rgb(49, 49, 170);
+  text-align: center;
+}

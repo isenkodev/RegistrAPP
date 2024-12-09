@@ -6,11 +6,11 @@
   <ion-list class="login-list">
     <ion-img src="assets/login.svg"></ion-img>
     <h5>Iniciar Sesión</h5>
-    <ion-item>  
-      <ion-input label="Usuario:" [(ngModel)]="email"></ion-input>
+    <ion-item>
+      <ion-input label="Usuario:" [(ngModel)]="email" autocomplete="off"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input label="Contraseña:" type="password" [(ngModel)]="pass"></ion-input>
+      <ion-input label="Contraseña:" type="password" [(ngModel)]="pass" autocomplete="off"></ion-input>
     </ion-item>
   </ion-list>
 
@@ -20,7 +20,7 @@
   </ion-button>
 
   <div class="ion-text-center" style="margin-top: 20px;">
-    <a  [routerLink]="['/recuperar']">Recuperar contraseña</a>
+    <a [routerLink]="['/recuperar']">Recuperar contraseña</a>
   </div>
 </ion-content>
 
