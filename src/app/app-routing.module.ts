@@ -6,7 +6,7 @@ import { autenticadoGuard } from './guard/autenticado.guard';
 const routes: Routes = [
   {
     path: 'home',
-    canActivate: [autenticadoGuard], 
+    // canActivate: [autenticadoGuard],
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    canActivate: [noAutenticadoGuard], 
+    // canActivate: [noAutenticadoGuard],
     loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {

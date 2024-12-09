@@ -1,9 +1,9 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { LoginServiceService } from '../service/login.service.service';
 import { CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHint } from '@capacitor/barcode-scanner';
-import { FullCalendarComponent } from '@fullcalendar/angular'; 
+import { FullCalendarComponent } from '@fullcalendar/angular';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -14,12 +14,12 @@ import { Geolocation } from '@capacitor/geolocation';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements AfterViewInit {
+export class HomePage implements AfterViewInit, OnInit {
 
   username: string = 'guest';
   result: string = '';
-  
-  asistenciasList: string[] = this.cargarAsistencias(); 
+
+  asistenciasList: string[] = this.cargarAsistencias();
 
   @ViewChild(FullCalendarComponent) fullCalendar!: FullCalendarComponent;
 
@@ -31,6 +31,13 @@ export class HomePage implements AfterViewInit {
     private alertController: AlertController,
     private loginService: LoginServiceService
   ) {}
+
+  // Verificar si el usuario está logueado al inicializar la página
+  ngOnInit() {
+    if (!this.loginService.isAuthenticated()) {
+      this.router.navigate(['/login']);  // Redirigir al login si no está autenticado
+    }
+  }
 
   cargarAsistencias(): string[] {
     const asistenciasGuardadas = localStorage.getItem('asistencias');
@@ -49,6 +56,12 @@ export class HomePage implements AfterViewInit {
 
     if (this.result) {
       const asistenciaMensaje = this.createAsistenciaMensaje(this.result);
+
+      // Verificar si la asistencia ya ha sido registrada
+      if (this.asistenciasList.includes(asistenciaMensaje)) {
+        await this.showInfoMessage('Esta asistencia ya fue registrada.');
+        return;
+      }
 
       this.agregarAsistencia(asistenciaMensaje);
 
@@ -71,9 +84,18 @@ export class HomePage implements AfterViewInit {
     await alert.present();
   }
 
+  async showInfoMessage(message: string) {
+    const alert = await this.alertController.create({
+      header: 'Información',
+      message: message,
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
+
   agregarAsistencia(asistencia: string) {
     this.asistenciasList.push(asistencia);
-    this.guardarAsistencias(); 
+    this.guardarAsistencias();
   }
 
   createAsistenciaMensaje(codigo: string): string {
@@ -110,8 +132,6 @@ export class HomePage implements AfterViewInit {
         // Guardamos las coordenadas
         this.latitude = position.coords.latitude.toString();
         this.longitude = position.coords.longitude.toString();
-
-        console.log('Ubicación obtenida:', position);
       } else {
         console.error('No se pudo obtener la ubicación');
       }
@@ -119,12 +139,16 @@ export class HomePage implements AfterViewInit {
       console.error('Error al obtener la ubicación', error);
     }
   }
-  
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     plugins: [dayGridPlugin, interactionPlugin],
-    weekends: false,  
+    weekends: false,
+    headerToolbar: {
+      left: 'prev,next', // Botones para navegar entre meses
+      center: 'title',   // Título centrado
+      right: ''          // Sin botón "today"
+    },
     events: [
       { title: 'Día del completo', date: '2024-11-01', id: '1' },
       { title: 'Día del pan con queso', date: '2024-11-02', id: '2' },
@@ -139,20 +163,20 @@ export class HomePage implements AfterViewInit {
       const calendarApi = this.fullCalendar.getApi();
       calendarApi.addEvent({
         title: eventTitle,
-        date: arg.dateStr,  
-        id: new Date().getTime().toString(),  
+        date: arg.dateStr,
+        id: new Date().getTime().toString(),
       });
       alert('Evento agregado para: ' + arg.dateStr);
     }
   }
 
   handleEventClick(info: any) {
-    const eventId = info.event.id; 
-    const eventTitle = info.event.title; 
+    const eventId = info.event.id;
+    const eventTitle = info.event.title;
 
     if (confirm(`¿Estás seguro de que quieres eliminar el evento: "${eventTitle}"?`)) {
       const calendarApi = this.fullCalendar.getApi();
-      calendarApi.getEventById(eventId)?.remove(); 
+      calendarApi.getEventById(eventId)?.remove();
       alert(`Evento "${eventTitle}" eliminado`);
     }
   }
@@ -164,10 +188,11 @@ export class HomePage implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log(this.fullCalendar.getApi()); 
+    console.log(this.fullCalendar.getApi());
   }
+
   onLogout() {
-    this.loginService.logout();
-    this.router.navigate(['/login']);
+    this.loginService.logout();  // Limpiar sesión
+    this.router.navigate(['/login']);  // Redirigir al login
   }
 }

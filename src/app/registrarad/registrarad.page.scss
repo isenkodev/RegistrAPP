@@ -1,38 +1,46 @@
 .custom-header {
-    color: whitesmoke;
-    background-color: rgb(49, 49, 170);
-  
-    h1 {
-      font-size: 20px;
-      font-family: 'Segoe UI';
-      text-align: center;
-    }
+  color: whitesmoke;
+  background-color: rgb(49, 49, 170);
+  text-align: center
+}
+
+h1.admin-title, h6.admin-title {
+  font-size: 20px;
+  font-family: 'Segoe UI';
+  text-align: center;
+}
+
+h1.admin-title {
+  margin-top: 20px;
+}
+
+h6.admin-title {
+  margin-bottom: 20px;
+}
+
+.login-list {
+  margin-top: 20%;
+
+  ion-img {
+    display: block;
+    margin: 0 auto;
+    width: 300px;
+    height: auto;
   }
-  
-  .login-list {
-    margin-top: 20%;
-    
-    ion-img {
-      display: block;
-      margin: 0 auto; 
-      width: 300px; 
-      height: auto; 
-    }
-  
-    h5 {
-      font-size: 20px;
-      font-family: 'Segoe UI';
-      text-align: center;
-    }
+
+  h5 {
+    font-size: 20px;
+    font-family: 'Segoe UI';
+    text-align: center;
   }
-  
-  
-  .link-container {
-    margin-top: 20px;
-  
-    a {
-      color: rgb(49, 49, 170);
-      text-decoration: none;
-    }
+}
+
+.link-container {
+  margin-top: 20px;
+
+  a {
+    color: rgb(49, 49, 170);
+    text-decoration: none;
   }
-  
+}
+
